@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>プロジェクト一覧</title>
+  <link rel="stylesheet" href="/css/common.css">
+</head>
+<body>
+	
+	<main>
+		<!--テーブル用エリア-->
+		<div id = "projectList">
+			<table id = "projectTable">
+				<thead>
+					<tr>
+						<th>項番</th>
+						<th>プロジェクト名</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody id="projectTableBody">
+					<!--jsで追加-->
+				</tbody>
+			</table>
+		</div>
+		<!--追加モーダル用ボタン-->
+		<div>
+			<button id="openAddProjectModal">プロジェクトを追加する</button>
+			
+			<!--モーダル-->
+			<div id="addProjectModal" class="modal">
+				<div class="modal-content">
+					<span class="close" id="closeAddProjectModal">&times;</span>
+					<form id="addProjectForm">
+						<label>プロジェクト名</label><br>
+						<input type="text" id="projectName">
+					</form>
+					<button id="addProject">追加</button>
+				</div>
+			</div>
+		</div>
+		
+	</main>
+	
+	<script src="../js/api.js"></script>
+	<script src="project-list.js"></script>
+</body>
+</html>

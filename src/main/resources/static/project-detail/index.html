@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>プロジェクト概要</title>
+  <link rel="stylesheet" href="/css/common.css">
+</head>
+<body>
+	<main>
+		<!--プロジェクト名-->
+		<div>
+			<div id="projectName"></div>
+			<button id="openEditProjectNameModal">プロジェクト名を変更</button><br>
+			<div id="editProjectNameModal" class="modal">
+				<div class="modal-content">
+					<span class="close" id="closeEditProjectNameModal">&times;</span>
+					<form>
+						<label>プロジェクト名</label><br>
+						<input type="text" id="newProjectName">
+					</form>
+					<button id="editProjectName">変更する</button>
+				</div>
+			</div>
+		</div>
+		<!--プロジェクト概要-->
+		<div>
+			<label for="projectSummary">プロジェクト概要</label><br>
+			<textarea id="projectSummary" rows="10" cols="50" placeholder="このプロジェクトの目的や特徴を自由に書いてください..."></textarea><br>
+			<button id="saveProjectSummary">保存する</button>
+			<div id="summarySaveStatus"></div>
+		</div>
+	
+		<!--画面一覧-->
+		<div>
+			<table id="screenTable">
+				<tr>
+					<th>ビュー名</th>
+					<th>概要</th>
+					<th>操作</th>
+				</tr>
+				<tbody id="screenTableBody"></tbody>
+			</table>
+		</div>
+		
+		<!--画面追加ボタン-->
+		<div>
+			<button id="openAddScreenModal">ビューを追加する</button>
+			
+			<!--画面追加モーダル-->
+			<div id="addScreenModal" class="modal">
+				<div class="modal-content">
+					<span class="close" id="closeAddScreenModal">&times;</span>
+					<form id="addScreenForm">
+						<label>ビュー名</label><br>
+						<input type="text" name="screenName"><br>
+						<label>概要</label><br>
+						<textarea rows="8" cols="30" name="screenSummary"></textarea>
+					</form>
+					<button id="addScreen">追加</button>
+				</div>
+			</div>
+		</div>
+		<!--テーブル一覧-->
+		
+	</main>
+	
+	<script src="../js/api.js"></script>
+	<script src="../js/script.js"></script>
+	<script src="project-detail.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+	
+</body>
+</html>
