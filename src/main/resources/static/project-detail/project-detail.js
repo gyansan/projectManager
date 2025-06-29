@@ -1,5 +1,4 @@
 
-
 //ID取得
 const params = new URLSearchParams(location.search);
 const projectId = params.get("project-id");
@@ -108,7 +107,7 @@ function updateSaveStatus(isSaved){
 
 /*編集ボタンが押された時の処理(遷移)*/
 function editScreen(screenId){
-	location.href = `../screen-detail/index.html?project-id=${projectId}&${screenId}`;
+	location.href = `../screen-detail/index.html?project-id=${projectId}&screen-id=${screenId}`;
 }
 
 /*スクリーン追加*/

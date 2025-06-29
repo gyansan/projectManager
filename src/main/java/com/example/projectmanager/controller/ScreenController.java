@@ -25,26 +25,27 @@ public class ScreenController {
 	}
 	
 	@GetMapping("/api/projects/{project_id}/screens/list")
-	public List<ScreenResponseDTO> getScreenList(@PathVariable Integer project_id){
-		return screenService.getScreenList(project_id);
+	public List<ScreenResponseDTO> getScreenList(@PathVariable("project_id") Integer projectId){
+		return screenService.getScreenList(projectId);
 	}
 	
 	@PostMapping("/api/projects/{project_id}/screens")
-	public ResponseEntity<Integer> addScreen(@PathVariable Integer project_id,
+	public ResponseEntity<Integer> addScreen(@PathVariable("project_id") Integer projectId,
 											@RequestBody ScreenRequestDTO dto){
-		Integer screenId = screenService.addScreen(dto, project_id);
+		Integer screenId = screenService.addScreen(dto, projectId);
 		return ResponseEntity.ok(screenId);
 	}
 	
 	@PatchMapping("/api/projects/{project_id}/screens/sort-order")
-	public void updateSortOrder(@PathVariable Integer project_id,
+	public void updateSortOrder(@PathVariable("project_id") Integer projectId,
 								@RequestBody SortOrderUpdateRequestDTO response) {
-		screenService.updateSortOrder(project_id, response.getSortedIds());
+		screenService.updateSortOrder(projectId, response.getSortedIds());
 	}
 	
 	@GetMapping("/api/projects/{project_id}/screens/{screen_id}")
-	public ScreenResponseDTO getScreen(@PathVariable Integer screen_id) {
-		return screenService.getScreen(screen_id);
+	public ScreenResponseDTO getScreen(@PathVariable("project_id") Integer projectId,
+	                                   @PathVariable("screen_id") Integer screenId) {
+	    return screenService.getScreen(screenId);
 	}
 
 }
