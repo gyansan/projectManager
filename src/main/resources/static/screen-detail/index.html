@@ -10,12 +10,42 @@
 	<main>
 		
 		<!--プロジェクト名雑表示-->
-		<div id ="projectName"></div>
-		<!--ビュー名表示-->
-		<div id ="screenName"></div>
-		<!--ビュー概要-->
+		<div id = "projectName"></div>
+		<div id = "screenName"></div>
+		<div id = "screenSummary"></div>
 		
 		<!--機能一覧-->
+		<div id = "functionList">
+			<table id = "functionTable">
+				<thead>
+					<tr>
+						<th>機能</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody id = "functionTableBody">
+				</tbody>
+			</table>
+		</div>
+		
+		<!--機能追加モーダル-->
+		<div>
+			<button id="openAddFunctionModal">機能を追加する</button>
+			
+			<div id="addFunctionModal" class="modal">
+				<div class="modal-content">
+					<span class="close" id="closeAddFunctionModal">&times;</span>
+					<form id="addFunctionForm">
+						<label>機能名</label><br>
+						<input type="text" name="functionName"><br>
+						<label>概要</label><br>
+						<textarea rows="8" cols="30" name="functionSummary"></textarea>
+					</form>
+					<button id="addFunction">追加</button>
+				</div>
+			</div>
+			
+		</div>
 		
 	</main>
 	
