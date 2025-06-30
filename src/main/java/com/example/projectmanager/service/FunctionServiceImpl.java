@@ -1,8 +1,12 @@
 package com.example.projectmanager.service;
 
+import java.util.Comparator;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-import com.example.projectmanager.dto.FunctionRequestDto;
+import com.example.projectmanager.dto.FunctionRequestDTO;
+import com.example.projectmanager.dto.FunctionResponseDTO;
 import com.example.projectmanager.entity.Screen;
 import com.example.projectmanager.entity.ScreenFunction;
 import com.example.projectmanager.repository.ScreenFunctionRepository;
@@ -22,7 +26,7 @@ public class FunctionServiceImpl implements FunctionService {
 	}
 	
 	@Override
-	public Integer addFuncition(FunctionRequestDto dto, Integer screenId) {
+	public Integer addFuncition(FunctionRequestDTO dto, Integer screenId) {
 		Screen screen = screenRepository.findById(screenId).orElseThrow();
 		ScreenFunction function = new ScreenFunction();
 		function.setScreen(screen);
@@ -38,4 +42,17 @@ public class FunctionServiceImpl implements FunctionService {
 		
 	}
 	
+	@Override
+	public List<FunctionResponseDTO> getFunctionList(Integer screenId){
+		return functionRepository.findByScreenId(screenId)
+				.stream()
+				.sorted(Comparator.comparing(ScreenFunction::getSortKey))
+				.map(FunctionResponseDTO::new)
+				.toList();
+	}
+	
 }
+
+
+
+
