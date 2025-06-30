@@ -17,6 +17,52 @@ async function displayScreen(){
 	document.getElementById("screenSummary").textContent = screen.screenSummary;
 }
 
+/*機能一覧表示*/
+async function displayFunctionList(){
+	
+	const functionList = await getFunctionList(projectId, screenId);
+	
+	console.log(functionList);
+	
+	const tbody = document.getElementById("functionTableBody");
+	tbody.innerHTML = "";
+	
+	functionList.forEach((functionA)=> {
+		const row = document.createElement("tr");
+		row.dataset.id = functionA.id;
+		
+		const nameCell = document.createElement("td");
+		nameCell.textContent = functionA.functionName;
+		
+		const summaryCell = document.createElement("td");
+		summaryCell.textContent = functionA.functionSummary;
+		
+		const emplementedCell = document.createElement("td");
+		emplementedCell.textContent = functionA.emplemented ? "実装済" : "未実装";
+		
+		const actionCell = document.createElement("td");
+		
+		const editButton = document.createElement("button");
+		editButton.textContent = "編集";
+		editButton.addEventListener("click",() => editFunction(functionA.id));
+		
+		const deleteButton = document.createElement("button");
+		deleteButton.textContent = "削除";
+		deleteButton.addEventListener("click", () => deleteFunction(functionA.id));
+		
+		actionCell.appendChild(editButton);
+		actionCell.appendChild(deleteButton);
+		
+		row.appendChild(nameCell);
+		row.appendChild(summaryCell);
+		row.appendChild(emplementedCell);
+		row.appendChild(actionCell);
+		tbody.appendChild(row);
+		
+	});
+	
+}
+
 /*機能追加*/
 async function addFunction(){
 	const addFunctionForm = document.getElementById("addFunctionForm");
@@ -52,6 +98,7 @@ function closeAddFunctionModal() {
 /*関数呼び出し*/
 window.addEventListener("load",displayProjectName);
 window.addEventListener("load",displayScreen);
+window.addEventListener("load",displayFunctionList);
 
 document.getElementById("openAddFunctionModal").addEventListener("click",openAddFunctionModal);
 document.getElementById("closeAddFunctionModal").addEventListener("click",closeAddFunctionModal);

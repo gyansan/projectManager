@@ -1,11 +1,15 @@
 package com.example.projectmanager.controller;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.projectmanager.dto.FunctionRequestDto;
+import com.example.projectmanager.dto.FunctionRequestDTO;
+import com.example.projectmanager.dto.FunctionResponseDTO;
 import com.example.projectmanager.service.FunctionService;
 
 @RestController
@@ -20,10 +24,18 @@ public class FunctionController {
 	@PostMapping("/api/projects/{project_id}/screens/{screen_id}/functions")
 	public Integer addFunction(@PathVariable("project_id") Integer projectId,
 							@PathVariable("screen_id") Integer screenId,
-							@RequestBody FunctionRequestDto dto) {
+							@RequestBody FunctionRequestDTO dto) {
 		
 		return functionService.addFuncition(dto, screenId);
 		 
 	}
+	
+	@GetMapping("/api/projects/{project_id}/screens/{screen_id}/functions/list")
+	public List<FunctionResponseDTO> getFunctionList(@PathVariable("project_id") Integer projectId,
+													@PathVariable("screen_id") Integer screenId){
+		return functionService.getFunctionList(screenId);
+	}
 
+	
+	
 }

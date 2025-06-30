@@ -1,5 +1,7 @@
 package com.example.projectmanager.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,5 +14,5 @@ public interface ScreenFunctionRepository extends JpaRepository<ScreenFunction, 
 	
 	@Query("SELECT COALESCE(MAX(f.sortKey), 0) FROM ScreenFunction f WHERE f.screen.id = :screenId")
 	int findMaxSortKeyByScreenId(@Param("screenId") Integer screenId);
-
+	List<ScreenFunction> findByScreenId(Integer screenId);
 }

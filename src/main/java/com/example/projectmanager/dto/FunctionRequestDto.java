@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class FunctionRequestDto {
+public class FunctionRequestDTO {
 	
 	private String functionName;
 	private String functionSummary;

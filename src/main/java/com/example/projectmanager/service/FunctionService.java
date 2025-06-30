@@ -1,10 +1,14 @@
 package com.example.projectmanager.service;
 
-import com.example.projectmanager.dto.FunctionRequestDto;
+import java.util.List;
+
+import com.example.projectmanager.dto.FunctionRequestDTO;
+import com.example.projectmanager.dto.FunctionResponseDTO;
 
 public interface FunctionService {
 	
-	Integer addFuncition(FunctionRequestDto dto, Integer screenId);
+	Integer addFuncition(FunctionRequestDTO dto, Integer screenId);
+	List<FunctionResponseDTO> getFunctionList(Integer screenId);
 	
 
 }

@@ -3,12 +3,12 @@
 
 /*projectAPI*/
 async function getProjectListApi(){
-	const response = await fetch(`/api/projects`)
+	const response = await fetch(`/api/projects`);
 	return await response.json();
 }
 
 async function getProjectApi(projectId){
-	const response = await fetch(`/api/projects/${projectId}`)
+	const response = await fetch(`/api/projects/${projectId}`);
 	return await response.json();
 }
 
@@ -55,7 +55,7 @@ async function addScreenApi(projectId, json){
 	return screenId;
 }
 async function getScreenListApi(projectId){
-	const response = await fetch(`/api/projects/${projectId}/screens/list`)
+	const response = await fetch(`/api/projects/${projectId}/screens/list`);
 	return await response.json();
 }
 
@@ -68,14 +68,12 @@ async function updateScreenSortOrderApi(projectId,json){
 }
 
 async function getScreenApi(projectId,screenId){
-	const response = await fetch(`/api/projects/${projectId}/screens/${screenId}`)
+	const response = await fetch(`/api/projects/${projectId}/screens/${screenId}`);
 	return await response.json();
 }
 
 /*functionAPI*/
-
 async function addFunctionApi(projectId, screenId, json){
-	console.log(json);
 	const response = await fetch(`/api/projects/${projectId}/screens/${screenId}/functions`,{
 		method:"POST",
 		headers:{"Content-Type":`application/json`},
@@ -84,4 +82,19 @@ async function addFunctionApi(projectId, screenId, json){
 	const functionId = await response.json();
 	return functionId;
 }
+
+async function getFunctionList(projectId, screenId){
+	const response = await fetch(`/api/projects/${projectId}/screens/${screenId}/functions/list`);
+	return await response.json();
+}
+
+
+
+
+
+
+
+
+
+
 
