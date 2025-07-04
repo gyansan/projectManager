@@ -12,7 +12,7 @@ async function displayProjectName(){
 
 /*スクリーン名と概要表示*/
 async function displayScreen(){
-	const screen = await getScreenApi(projectId,screenId)
+	const screen = await getScreenApi(screenId)
 	document.getElementById("screenName").textContent = screen.screenName;
 	document.getElementById("screenSummary").textContent = screen.screenSummary;
 }
@@ -20,7 +20,7 @@ async function displayScreen(){
 /*機能一覧表示*/
 async function displayFunctionList(){
 	
-	const functionList = await getFunctionList(projectId, screenId);
+	const functionList = await getFunctionListApi(screenId);
 	
 	const tbody = document.getElementById("functionTableBody");
 	tbody.innerHTML = "";
@@ -96,7 +96,7 @@ async function addFunction(){
 		functionSummary: formData.get("functionSummary")
 	});
 	
-	const functionId = await addFunctionApi(projectId, screenId, json);
+	const functionId = await addFunctionApi(screenId, json);
 	console.log(functionId);
 }
 
