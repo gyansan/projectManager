@@ -42,9 +42,8 @@ public class ScreenController {
 		screenService.updateSortOrder(projectId, response.getSortedIds());
 	}
 	
-	@GetMapping("/api/projects/{project_id}/screens/{screen_id}")
-	public ScreenResponseDTO getScreen(@PathVariable("project_id") Integer projectId,
-	                                   @PathVariable("screen_id") Integer screenId) {
+	@GetMapping("/api/projects/screens/{screen_id}")
+	public ScreenResponseDTO getScreen(@PathVariable("screen_id") Integer screenId) {                
 	    return screenService.getScreen(screenId);
 	}
 

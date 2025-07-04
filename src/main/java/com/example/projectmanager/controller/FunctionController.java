@@ -23,18 +23,16 @@ public class FunctionController {
 		this.functionService = functionService;
 	}
 	
-	@PostMapping("/api/projects/{project_id}/screens/{screen_id}/functions")
-	public Integer addFunction(@PathVariable("project_id") Integer projectId,
-							@PathVariable("screen_id") Integer screenId,
+	@PostMapping("/api/projects/screens/{screen_id}/functions")
+	public Integer addFunction(@PathVariable("screen_id") Integer screenId,
 							@RequestBody FunctionRequestDTO dto) {
 		
 		return functionService.addFuncition(dto, screenId);
 		 
 	}
 	
-	@GetMapping("/api/projects/{project_id}/screens/{screen_id}/functions/list")
-	public List<FunctionResponseDTO> getFunctionList(@PathVariable("project_id") Integer projectId,
-													@PathVariable("screen_id") Integer screenId){
+	@GetMapping("/api/projects/screens/{screen_id}/functions/list")
+	public List<FunctionResponseDTO> getFunctionList(@PathVariable("screen_id") Integer screenId){
 		return functionService.getFunctionList(screenId);
 	}
 
