@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.projectmanager.dto.EmplementedRequestDTO;
 import com.example.projectmanager.dto.FunctionRequestDTO;
 import com.example.projectmanager.dto.FunctionResponseDTO;
 import com.example.projectmanager.entity.Screen;
@@ -49,6 +50,12 @@ public class FunctionServiceImpl implements FunctionService {
 				.sorted(Comparator.comparing(ScreenFunction::getSortKey))
 				.map(FunctionResponseDTO::new)
 				.toList();
+	}
+	@Override
+	public void editEmplemented(Integer functionId, EmplementedRequestDTO dto) {
+		ScreenFunction screenFunction = functionRepository.findById(functionId).orElseThrow();
+		screenFunction.setImplemented(dto.isEmplemented());
+		functionRepository.save(screenFunction);
 	}
 	
 }

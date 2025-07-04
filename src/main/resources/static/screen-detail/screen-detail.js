@@ -22,8 +22,6 @@ async function displayFunctionList(){
 	
 	const functionList = await getFunctionList(projectId, screenId);
 	
-	console.log(functionList);
-	
 	const tbody = document.getElementById("functionTableBody");
 	tbody.innerHTML = "";
 	
@@ -38,7 +36,32 @@ async function displayFunctionList(){
 		summaryCell.textContent = functionA.functionSummary;
 		
 		const emplementedCell = document.createElement("td");
-		emplementedCell.textContent = functionA.emplemented ? "実装済" : "未実装";
+		//プルダウン作ってる
+		const select = document.createElement("select");
+		select.addEventListener("change", (e) => {
+			const newValue = e.target.value;
+			const functionId = functionA.id;
+			updateFunctionEmplemented(functionId, newValue);
+		});
+	
+		const option1 = document.createElement("option");
+		option1.value = "true";
+		option1.textContent = "実装済";
+		
+		const option2 = document.createElement("option");
+		option2.value = "false";
+		option2.textContent = "未実装";
+		
+		// 初期選択（functionA.emplemented が true なら option1 を選ぶ）
+		if (functionA.emplemented) {
+		  option1.selected = true;
+		} else {
+		  option2.selected = true;
+		}
+		
+		select.appendChild(option1);
+		select.appendChild(option2);
+		emplementedCell.appendChild(select);
 		
 		const actionCell = document.createElement("td");
 		
@@ -77,6 +100,14 @@ async function addFunction(){
 	console.log(functionId);
 }
 
+/*機能の実装・未実装切替*/
+async function updateFunctionEmplemented(functionId, newValue){
+	const json = JSON.stringify({
+		emplemented: newValue
+	});
+	
+	updateFunctionEmplementedApi(functionId, json);
+}
 
 
 /*モーダル*/

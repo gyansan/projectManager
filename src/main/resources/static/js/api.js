@@ -88,6 +88,13 @@ async function getFunctionList(projectId, screenId){
 	return await response.json();
 }
 
+async function updateFunctionEmplementedApi(functionId, json){
+	await fetch(`/api/projects/screens/functions/${functionId}/emplement`,{
+		method:"PATCH",
+		headers:{"Content-Type":"application/json"},
+		body: json
+	});
+}
 
 
 
