@@ -27,13 +27,15 @@ public class ProjectController {
 	}
 
 	@GetMapping("/api/projects")
-	public List<ProjectResponseDTO> getProjectList(){
-		return projectService.getProjectList();
+	public ResponseEntity<List<ProjectResponseDTO>> getProjectList(){
+		List<ProjectResponseDTO> list = projectService.getProjectList();
+		return ResponseEntity.ok(list);
 	}
 	
 	@GetMapping("/api/projects/{id}")
-	public ProjectResponseDTO getProject(@PathVariable Integer id) {
-		return projectService.getProject(id);
+	public ResponseEntity<ProjectResponseDTO> getProject(@PathVariable Integer id) {
+		ProjectResponseDTO project = projectService.getProject(id);
+		return ResponseEntity.ok(project);
 	}
 	
 	@PostMapping("/api/projects")
@@ -43,20 +45,23 @@ public class ProjectController {
 	}
 	
 	@DeleteMapping("/api/projects/{id}")
-	public void deleteProject(@PathVariable Integer id) {
+	public ResponseEntity<Void> deleteProject(@PathVariable Integer id) {
 		projectService.deleteProject(id);
+		return ResponseEntity.noContent().build();
 	}
 	
 	@PatchMapping("/api/projects/{id}/name")
-	public void updateProjectName(@PathVariable Integer id,
+	public ResponseEntity<Void> updateProjectName(@PathVariable Integer id,
 								  @RequestBody ProjectNameUpdateDTO dto) {
 		projectService.updateProjectName(id, dto);
+		return ResponseEntity.noContent().build();
 	}
 	
 	@PatchMapping("/api/projects/{id}/summary")
-	public void updateProjectSummary(@PathVariable Integer id,
+	public ResponseEntity<Void> updateProjectSummary(@PathVariable Integer id,
 									 @RequestBody ProjectSummaryUpdateDTO dto) {
 		projectService.updateProjectSummary(id, dto);
+		return ResponseEntity.noContent().build();
 	}
 
 }

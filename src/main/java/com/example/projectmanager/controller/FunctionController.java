@@ -2,6 +2,7 @@ package com.example.projectmanager.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,22 +25,24 @@ public class FunctionController {
 	}
 	
 	@PostMapping("/api/projects/screens/{screen_id}/functions")
-	public Integer addFunction(@PathVariable("screen_id") Integer screenId,
+	public ResponseEntity<Integer> addFunction(@PathVariable("screen_id") Integer screenId,
 							@RequestBody FunctionRequestDTO dto) {
-		
-		return functionService.addFuncition(dto, screenId);
+		Integer functionId = functionService.addFuncition(dto, screenId);
+		return ResponseEntity.ok(functionId);
 		 
 	}
 	
 	@GetMapping("/api/projects/screens/{screen_id}/functions/list")
-	public List<FunctionResponseDTO> getFunctionList(@PathVariable("screen_id") Integer screenId){
-		return functionService.getFunctionList(screenId);
+	public ResponseEntity<List<FunctionResponseDTO>> getFunctionList(@PathVariable("screen_id") Integer screenId){
+		List<FunctionResponseDTO> list = functionService.getFunctionList(screenId);
+		return ResponseEntity.ok(list);
 	}
 
 	@PatchMapping("/api/projects/screens/functions/{function_id}/emplement")
-	public void updateFunctionEmplemented(@PathVariable("function_id") Integer functionId,
+	public ResponseEntity<Void> updateFunctionEmplemented(@PathVariable("function_id") Integer functionId,
 										@RequestBody EmplementedRequestDTO dto){
 		functionService.editEmplemented(functionId, dto);
+		return ResponseEntity.noContent().build();
 	}
 	
 }
