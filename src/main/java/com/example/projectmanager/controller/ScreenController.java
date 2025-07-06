@@ -25,8 +25,9 @@ public class ScreenController {
 	}
 	
 	@GetMapping("/api/projects/{project_id}/screens/list")
-	public List<ScreenResponseDTO> getScreenList(@PathVariable("project_id") Integer projectId){
-		return screenService.getScreenList(projectId);
+	public ResponseEntity<List<ScreenResponseDTO>> getScreenList(@PathVariable("project_id") Integer projectId){
+		List<ScreenResponseDTO> list = screenService.getScreenList(projectId);
+		return ResponseEntity.ok(list);
 	}
 	
 	@PostMapping("/api/projects/{project_id}/screens")
@@ -37,14 +38,16 @@ public class ScreenController {
 	}
 	
 	@PatchMapping("/api/projects/{project_id}/screens/sort-order")
-	public void updateSortOrder(@PathVariable("project_id") Integer projectId,
+	public ResponseEntity<Void> updateSortOrder(@PathVariable("project_id") Integer projectId,
 								@RequestBody SortOrderUpdateRequestDTO response) {
 		screenService.updateSortOrder(projectId, response.getSortedIds());
+		return ResponseEntity.noContent().build();
 	}
 	
 	@GetMapping("/api/projects/screens/{screen_id}")
-	public ScreenResponseDTO getScreen(@PathVariable("screen_id") Integer screenId) {                
-	    return screenService.getScreen(screenId);
+	public ResponseEntity<ScreenResponseDTO> getScreen(@PathVariable("screen_id") Integer screenId) {                
+		ScreenResponseDTO screen = screenService.getScreen(screenId);
+		return ResponseEntity.ok(screen);
 	}
 
 }
